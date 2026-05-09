@@ -26,6 +26,16 @@ class DarkCastleRegressionTests(unittest.TestCase):
         self.assertFalse(result["success"])
         self.assertNotIn("complete_key", engine.world.inventory)
 
+    def test_bedroom_does_not_reveal_drawer_key_before_opening(self) -> None:
+        engine = GameEngine()
+        engine.new_game()
+
+        engine.process_command("go north")
+        engine.process_command("go west")
+        result = engine.process_command("look")
+
+        self.assertNotIn("small key", result["message"].lower())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -297,7 +297,13 @@ class GameWorld:
             item_id = condition.get("item_id")
             container = self.items.get(container_id)
             item = self.items.get(item_id)
-            return bool(container and item and item.location == container_id and item_id in container.contents)
+            return bool(
+                container
+                and container.is_open()
+                and item
+                and item.location == container_id
+                and item_id in container.contents
+            )
 
         if cond_type == "item_state":
             item_id = condition.get("item_id")
