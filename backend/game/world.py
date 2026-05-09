@@ -237,6 +237,7 @@ class GameWorld:
             self.inventory.remove(item.id)
 
         item.location = room_id
+        item.hidden = False
         return True
 
     def put_item_in_container(self, item: Item, container: Item) -> bool:
