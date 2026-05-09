@@ -564,8 +564,8 @@ If anyone ever reads this, I hope you travel farther than I did.
         fragments = ["key_fragment_a", "key_fragment_b", "key_fragment_c"]
         owned_fragments = [fragment for fragment in fragments if fragment in self.world.inventory]
 
-        if len(owned_fragments) < 2:
-            missing = 2 - len(owned_fragments)
+        if len(owned_fragments) < 3:
+            missing = 3 - len(owned_fragments)
             if len(owned_fragments) == 0:
                 return ActionResult(False, "You do not have any key fragments to combine.")
             return ActionResult(
