@@ -36,6 +36,23 @@ class DarkCastleRegressionTests(unittest.TestCase):
 
         self.assertNotIn("small key", result["message"].lower())
 
+    def test_dropped_hidden_item_appears_in_room_description(self) -> None:
+        engine = GameEngine()
+        engine.new_game()
+        self.assertIsNotNone(engine.world)
+
+        engine.process_command("go north")
+        engine.process_command("go west")
+        engine.process_command("open nightstand")
+        engine.process_command("take small key")
+        small_key = engine.world.get_item("small_key")
+        self.assertIsNotNone(small_key)
+        small_key.hidden = True
+        engine.process_command("drop small key")
+        result = engine.process_command("look")
+
+        self.assertIn("small key", result["message"].lower())
+
 
 if __name__ == "__main__":
     unittest.main()
